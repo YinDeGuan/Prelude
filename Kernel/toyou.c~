@@ -1,0 +1,76 @@
+//
+
+#include"tosh.h"
+
+int enter_r3(r3_way ) ;
+
+int exam();
+
+int toyou();
+
+int toyou()
+{
+  u32 i = 1 ;
+
+  int (*p) () = toyou;
+
+  u32 selector_flatc_r3 = INDEX_FLATC_R3 << 3 ;
+  u32 selector_flatrw_r3 = INDEX_FLATRW_R3 << 3 ;
+  u32 selector_gate_r3tor0 = INDEX_GATE_R3TOR0 << 3 ; 
+
+  _feed(&disp_pos) ; 
+  _appear4( &disp_pos , "my sentence %d shit" , (void*)selector_gate_r3tor0 ) ; 
+
+
+  init_descriptor( &gdt[selector_flatc_r3 >> 3 ] , 0 , 0xFFFF , DA_C | DA_32 | DA_LIMIT_4K | DA_DPL3 ) ; 
+    // it is appropriate for that index of array can be valuable
+    // 数组以 " [index] " 方式得到是对象 , 或者详细点  对于结构数组来说是对象 , 而对于基本类型来说是值 .
+    // 
+  
+  init_descriptor( &gdt[ selector_flatrw_r3 >>3 ] , 0 , 0xFFFF , DA_DRW | DA_32 | DA_LIMIT_4K | DA_DPL3) ; 
+
+  _feed(&disp_pos) ; 
+  _appear4( &disp_pos , "my sentence %d" , (void*)INDEX_FLATC_R3 ) ; 
+
+  init_call_gate( (GATE*) &gdt[selector_gate_r3tor0 >> 3 ] , 0 , SELECTOR_KERNEL_CS , DA_386CGate | DA_DPL3 ) ; 
+
+  _appear4( &disp_pos , " show i : %d" , (void* ) i ) ; 
+
+  enter_r3(r3go)
+
+
+  _feed(&disp_pos) ;
+  _appear4( &disp_pos , " O , Lost in you ... " , 0 ) ; 
+
+  _appear4( &disp_pos , " show i : %d" , (void* ) i ) ; 
+
+  for( ; i < 100  ; i=i+ 2 ) ;
+
+  _feed( & disp_pos ) ; 
+  _appear4( &disp_pos , " show i : %d" , (void* ) i ) ; 
+
+  _appear4( &disp_pos , "show addr %d" , (void*) toyou);  
+
+  for(;;) ; 
+
+  return -1 ; 
+  
+}
+
+void exam()
+{
+  int i = 0 ;
+  for(  ; i < 10 ; i ++ ) 
+    _appear4( &disp_pos , " I am in R3 " , 0 ) ; 
+
+  
+}
+
+void r3go() 
+{
+  
+}
+
+
+//0612DEC2517
+//negiup

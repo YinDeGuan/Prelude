@@ -1,0 +1,91 @@
+;
+
+%ifndef sconst_DGUU
+%define sconst_DGUU
+
+P_STACKBASE	equ	0
+GSREG		equ	P_STACKBASE
+FSREG		equ	GSREG		+ 4
+ESREG		equ	FSREG		+ 4
+DSREG		equ	ESREG		+ 4
+EDIREG		equ	DSREG		+ 4
+ESIREG		equ	EDIREG		+ 4
+EBPREG		equ	ESIREG		+ 4
+KERNELESPREG	equ	EBPREG		+ 4
+EBXREG		equ	KERNELESPREG	+ 4
+EDXREG		equ	EBXREG		+ 4
+ECXREG		equ	EDXREG		+ 4
+EAXREG		equ	ECXREG		+ 4
+RETADR		equ	EAXREG		+ 4
+EIPREG		equ	RETADR		+ 4
+CSREG		equ	EIPREG		+ 4
+EFLAGSREG	equ	CSREG		+ 4
+ESPREG		equ	EFLAGSREG	+ 4
+SSREG		equ	ESPREG		+ 4
+P_STACKTOP	equ	SSREG		+ 4
+P_LDT_SEL	equ	P_STACKTOP
+
+P_LDT		equ	P_LDT_SEL	+ 2    ;局部描述符表 8 * 2 =16 byte
+DW_PID          equ     P_LDT           + 16
+P_NAME          equ     DW_PID          + 4 
+DW_TICK         equ     P_NAME          + 16
+DW_PRIORITY     equ     DW_TICK         + 4 
+DW_NRTTY        equ     P_LDT_SEL       + 4
+
+
+
+
+TSS3_S_SP0	equ	4
+
+
+
+
+INT_M_CTL	equ	0x20 ; I/O port for interrupt controller  <Master>
+INT_M_CTLMASK	equ	0x21 ; setting bits in this port disables ints   <Master>
+INT_S_CTL	equ	0xA0 ; I/O port for second interrupt controller  <Slave>
+INT_S_CTLMASK	equ	0xA1 ; setting bits in this port disables ints   <Slave>
+
+EOI		equ	0x20
+
+SA_RPL0         equ     0
+SA_RPL1         equ     1
+SA_RPL2         equ     2
+SA_RPL3         equ     3
+
+SELECTOR_FLAT_C		equ		0x08	
+SELECTOR_FLAT_RW        equ             0x10
+SELECTOR_VIDEO          equ             ( 0x18 | SA_RPL3)
+SELECTOR_TSS		equ		0x20	
+SELECTOR_LDT_FIRST      equ             0x28
+;SELECTOR_FLATC_R3       equ             (0x50 | SA_RPL3 )
+;SELECTOR_FLATRW_R3      equ             (0x58 | SA_RPL3 ) 
+;SELECTOR_GATEp_R3TOR0    equ             (0x60 | SA_RPL3 )
+
+;INDEX_FLATC_R3          equ             (SELECTOR_FLATC_R3 >> 3 )
+;INDEX_FLATRW_R3         equ             (SELECTOR_FLATRW_R3 >> 3 )
+;INDEX_GATE_R3TOR0           equ             (SELECTOR_GATE_R3TOR0 >> 3 )
+
+
+
+
+SELECTOR_KERNEL_CS	equ		SELECTOR_FLAT_C
+
+
+
+
+
+;GATE_U16_OFFSET_LOW     equ             0
+;GATE_U16_SELECTOR       equ             2                        
+;GATE_U8_DCOUNT          equ             4
+;GATE_U8_ATTR            equ             5
+;GATE_U16_OFFSET_HIGH    equ             6
+
+
+
+
+
+
+%endif
+
+;1615D916
+;negiup

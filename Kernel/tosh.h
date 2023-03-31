@@ -1,0 +1,31 @@
+//
+
+//try os head
+
+#ifndef tosh_DGUU
+#define tosh_DGUU
+
+
+
+#include"type.h"
+#include "protect.h"
+#include"const.h"
+
+#include "console.h"
+#include "tty.h"
+
+#include "proc.h"
+
+
+#include "proto.h"
+
+
+
+#include "keymap.h"
+
+#include "global.h"
+
+#endif
+
+//1025D616
+//neigup
